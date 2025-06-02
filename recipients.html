@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodShare | Connect with Recipients</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f0e8;
+      color: #333;
+    }
+
+    header {
+      background-color: #7b3f3f;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .section-title {
+      text-align: left;
+      padding: 40px 30px 10px;
+      font-size: 1.6em;
+      font-weight: bold;
+      border-bottom: 3px solid #9d4136;
+      display: inline-block;
+    }
+
+    .recipients-container {
+      padding: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .recipient-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      width: calc(50% - 40px); /* Two cards per row accounting for padding */
+      max-width: 500px; /* Maximum width for larger screens */
+      min-width: 300px; /* Minimum width */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+
+    .recipient-type {
+      font-weight: bold;
+      color: #7b3f3f;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+
+    .organization-name {
+      color: #a8573c;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .recipient-description {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .request-btn {
+      background-color: #7b3f3f;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    footer div {
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div><strong>🌱 FoodShare</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="post_donation.html">Donate</a>
+      <a href="#">Map</a>
+      <a href="#">How It Works</a>
+    </nav>
+  </header>
+
+  <!-- Recipients Section -->
+  <div class="section-title">Connect with Recipients</div>
+  
+  <div class="recipients-container">
+    <!-- Verified NGOs -->
+    <div class="recipient-card">
+      <div class="recipient-type">Verified NGOs</div>
+      
+      <div class="organization-name">1. Food for All Foundation</div>
+      <div class="recipient-description">
+        Distributes meals to underserved communities across the city. Accepts prepared meals and packaged foods.
+      </div>
+      
+      <div class="organization-name">2. Nourish the Nation</div>
+      <div class="recipient-description">
+        Focuses on child nutrition programs. Accepts healthy snacks and meal ingredients.
+      </div>
+      
+      <div class="organization-name">3. Community Food Rescue</div>
+      <div class="recipient-description">
+        Network of food recovery organizations working to reduce food waste.
+      </div>
+      
+      <button class="request-btn">View All NGOs (12+)</button>
+    </div>
+    
+    <!-- Shelters -->
+    <div class="recipient-card">
+      <div class="recipient-type">Shelters</div>
+      
+      <div class="organization-name">1. Hope Haven Shelter</div>
+      <div class="recipient-description">
+        Provides temporary housing and meals for homeless individuals and families.
+      </div>
+      
+      <div class="organization-name">2. Safe Harbor Women's Shelter</div>
+      <div class="recipient-description">
+        Shelter for women and children escaping domestic violence situations.
+      </div>
+      
+      <div class="organization-name">3. Youth Horizons Shelter</div>
+      <div class="recipient-description">
+        Emergency shelter for homeless youth aged 16-24.
+      </div>
+      
+      <button class="request-btn">View Nearby Shelters (8+)</button>
+    </div>
+    
+    <!-- Food Banks -->
+    <div class="recipient-card">
+      <div class="recipient-type">Food Banks</div>
+      
+      <div class="organization-name">1. City Community Food Bank</div>
+      <div class="recipient-description">
+        Central food bank distributing to over 50 pantries citywide.
+      </div>
+      
+      <div class="organization-name">2. Neighborhood Pantry Network</div>
+      <div class="recipient-description">
+        Collective of small neighborhood food pantries.
+      </div>
+      
+      <div class="organization-name">3. Senior Nutrition Center</div>
+      <div class="recipient-description">
+        Provides food assistance specifically for low-income seniors.
+      </div>
+      
+      <button class="request-btn">Find Food Banks</button>
+    </div>
+    
+    <!-- Community Programs -->
+    <div class="recipient-card">
+      <div class="recipient-type">Community Programs</div>
+      
+      <div class="organization-name">1. Meals on Wheels</div>
+      <div class="recipient-description">
+        Delivers meals to homebound elderly and disabled individuals.
+      </div>
+      
+      <div class="organization-name">2. After-School Bites</div>
+      <div class="recipient-description">
+        Provides snacks and meals to children in after-school programs.
+      </div>
+      
+      <div class="organization-name">3. Soup Kitchen Collective</div>
+      <div class="recipient-description">
+        Network of community kitchens serving hot meals daily.
+      </div>
+      
+      <button class="request-btn">View Community Programs</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <h3>🌱 FoodShare</h3>
+      <p>Connecting food donors with those in need to reduce waste and fight hunger.</p>
+      <div>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="post_donation.html">Donate</a>
+      <a href="#">Map</a>
+      <a href="#">How It Works</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="#">Blog</a>
+      <a href="#">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <p>✉ info@foodshare.org</p>
+      <p>📞 +123 456 7890</p>
+      <p>📍 123 Main St, City</p>
+    </div>
+  </footer>
+
+</body>
+</html>

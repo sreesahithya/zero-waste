@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | FoodShare</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+    }
+
+    header {
+      background-color: #c62828;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      color: white;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      flex: 1;
+      min-width: 200px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      font-size: 28px;
+      color: #c62828;
+      margin: 10px 0;
+    }
+
+    .card p {
+      color: #555;
+      margin: 0;
+    }
+
+    table {
+      width: 100%;
+      background: white;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #c62828;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background: #f1f1f1;
+    }
+
+    .btn-logout {
+      background-color: #e53935;
+      border: none;
+      padding: 8px 15px;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn-logout:hover {
+      background-color: #c62828;
+    }
+
+    .username {
+      font-weight: bold;
+      color: white;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 15px;
+      }
+      
+      .nav-center {
+        position: static;
+        transform: none;
+        margin: 15px 0;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      
+      .user-info {
+        margin-top: 15px;
+      }
+      
+      .cards {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Admin Dashboard</h1>
+  <div class="nav-center">
+    <div class="nav-links">
+      <a href="index1.html">Home</a>
+      <a href="manage_users.html">Users</a>
+      <a href="reports.html">Reports</a>
+    </div>
+  </div>
+  <div class="user-info">
+    <span class="username" id="usernameDisplay"></span>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="cards">
+    <div class="card">
+      <h2>342</h2>
+      <p>Total Donations</p>
+    </div>
+    <div class="card">
+      <h2>128</h2>
+      <p>Verified Recipients</p>
+    </div>
+    <div class="card">
+      <h2>59</h2>
+      <p>Active Donors</p>
+    </div>
+  </div>
+
+  <h2>Recent Donations</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Donor</th>
+        <th>Items</th>
+        <th>Location</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Green Leaf Restaurant</td>
+        <td>20 Meal Boxes</td>
+        <td>Hyderabad</td>
+        <td>Completed</td>
+        <td>April 12, 2025</td>
+      </tr>
+      <tr>
+        <td>Priya Sharma</td>
+        <td>10 Sandwiches</td>
+        <td>Vizag</td>
+        <td>Pending</td>
+        <td>April 13, 2025</td>
+      </tr>
+      <tr>
+        <td>Royal Events</td>
+        <td>50 Rice Meals</td>
+        <td>Chennai</td>
+        <td>Delivered</td>
+        <td>April 11, 2025</td>
+      </tr>
+      <tr>
+        <td>Bakery Corner</td>
+        <td>30 Bread Loaves</td>
+        <td>Bangalore</td>
+        <td>Completed</td>
+        <td>April 10, 2025</td>
+      </tr>
+      <tr>
+        <td>Community Center</td>
+        <td>45 Lunch Packets</td>
+        <td>Mumbai</td>
+        <td>Pending</td>
+        <td>April 14, 2025</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Check login status and update UI
+  document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userType = localStorage.getItem('userType');
+    
+    if (!isLoggedIn || userType !== 'admin') {
+      window.location.href = 'index.html';
+      return;
+    }
+    
+    const username = localStorage.getItem('username') || 'Admin';
+    document.getElementById('usernameDisplay').textContent = username;
+  });
+
+  function logout() {
+    localStorage.clear();
+    window.location.href = 'index.html';
+  }
+</script>
+
+</body>
+</html>

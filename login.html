@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodShare | Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f0e8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #7b3f3f;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      background-color: white;
+    }
+
+    button {
+      background-color: #7b3f3f;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .google-btn {
+      background-color: #4285F4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .google-btn img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .switch-form {
+      margin-top: 20px;
+    }
+
+    .user-type {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .user-type-btn {
+      flex: 1;
+      padding: 10px;
+      margin: 0 5px;
+      background: #f4f0e8;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+
+    .user-type-btn.active {
+      background: #7b3f3f;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">🌱 FoodShare</div>
+    <h2>Welcome Back</h2>
+
+    <button class="google-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google logo">
+      Continue with Google
+    </button>
+
+    <div class="user-type">
+      <button class="user-type-btn active" id="donorBtn">Donor</button>
+      <button class="user-type-btn" id="adminBtn">Admin</button>
+      <button class="user-type-btn" id="ngoBtn">NGO</button>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="switch-form">
+      Don't have an account? <a href="register.html">Register here</a>
+    </div>
+  </div>
+
+  <script>
+    let selectedUserType = 'donor';
+
+    // User type selection
+    const userTypeButtons = document.querySelectorAll('.user-type-btn');
+    userTypeButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        userTypeButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        selectedUserType = this.innerText.toLowerCase(); // 'donor', 'admin', or 'ngo'
+      });
+    });
+
+    // Login form submit handler
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Simulate login success and store info
+      localStorage.setItem('userType', selectedUserType);
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('username', username);
+
+      // Redirect based on role
+      if (selectedUserType === 'admin') {
+        window.location.href = 'index1.html';
+      } else if (selectedUserType === 'ngo') {
+        window.location.href = 'index2.html';
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Google login simulation
+    document.querySelector('.google-btn').addEventListener('click', function () {
+      localStorage.setItem('userType', selectedUserType);
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userEmail', 'googleuser@example.com');
+      localStorage.setItem('username', 'Google User');
+
+      if (selectedUserType === 'admin') {
+        window.location.href = 'index1.html';
+      } else if (selectedUserType === 'ngo') {
+        window.location.href = 'index2.html';
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>

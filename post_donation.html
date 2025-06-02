@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post Donation | FoodShare</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fef9f3;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #7b3f3f;
+      text-align: center;
+    }
+
+    form {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="file"] {
+      border: none;
+    }
+
+    button {
+      background: #7b3f3f;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    img {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Post Your Food Donation</h2>
+
+  <form action="submit-donation.php" method="POST" enctype="multipart/form-data" onsubmit="return showSuccessMessage()">
+    <label for="image">Upload Food Image:</label>
+    <input type="file" name="image" id="image" accept="image/*" required onchange="previewImage(event)">
+    <img id="preview" style="display:none;" />
+
+    <label for="items">What items are available:</label>
+    <textarea name="items" id="items" rows="3" required></textarea>
+
+    <label for="type">Type of Food:</label>
+    <select name="type" required>
+      <option value="veg">Vegetarian</option>
+      <option value="non-veg">Non-Vegetarian</option>
+    </select>
+
+    <label for="category">Category:</label>
+    <select name="category" required>
+      <option value="perishable">Perishable</option>
+      <option value="non-perishable">Non-Perishable</option>
+    </select>
+
+    <label for="expiry">Expiry Time / Pickup Deadline:</label>
+    <input type="datetime-local" name="expiry" required>
+
+    <label for="quantity">Approx Quantity (in kg or servings):</label>
+    <input type="text" name="quantity" required>
+
+    <label for="location">Pickup Location:</label>
+    <input type="text" name="location" id="location" readonly placeholder="Fetching your location..." required>
+
+    <input type="hidden" name="lat" id="lat">
+    <input type="hidden" name="lng" id="lng">
+
+    <button type="submit">Submit Donation</button>
+  </form>
+
+  <script>
+    // Preview image
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const output = document.getElementById('preview');
+        output.src = reader.result;
+        output.style.display = 'block';
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // Auto detect location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        document.getElementById('lat').value = position.coords.latitude;
+        document.getElementById('lng').value = position.coords.longitude;
+        document.getElementById('location').value = `Lat: ${position.coords.latitude.toFixed(5)}, Lng: ${position.coords.longitude.toFixed(5)}`;
+      }, function (err) {
+        alert('Could not fetch location.');
+      });
+    } else {
+      alert("Geolocation not supported.");
+    }
+
+    // Show success message and redirect
+    function showSuccessMessage() {
+      alert('Submitted Successfully!');
+      window.location.href = 'index.html'; // Change to your homepage
+      return false;  // Prevent form submission
+    }
+  </script>
+
+</body>
+</html>

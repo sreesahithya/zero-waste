@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donation History - FoodShare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7efe7;
+      margin: 0;
+    }
+    header {
+      background-color: #8b3f36;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    /* User dropdown styles */
+    #userDisplay {
+      display: flex;
+      align-items: center;
+    }
+    #userDisplay .dropdown button {
+      background-color: transparent;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      font-size: 1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    #userDisplay .dropdown button:hover {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 20px;
+    }
+    #userDisplay .dropdown-content {
+      right: 0;
+      left: auto;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f4f0e8;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    aside {
+      width: 250px;
+      background-color: #fff;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+      height: 100vh;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    }
+    .profile-card {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .profile-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #f2e6e4;
+    }
+    .profile-card h3 {
+      margin: 15px 0 5px;
+      color: #8b3f36;
+      font-size: 1.2rem;
+    }
+    .profile-card p {
+      color: #666;
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+    .verified {
+      display: inline-block;
+      background: #28a745;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      color: #555;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .sidebar-nav a i {
+      width: 24px;
+      margin-right: 12px;
+      text-align: center;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background-color: #f2e6e4;
+      color: #8b3f36;
+    }
+    .notification-badge {
+      background-color: #ff5722;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 10px;
+      margin-left: auto;
+    }
+    main {
+      flex: 1;
+      padding: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background-color: #f9e9e7;
+      color: #8b3f36;
+      font-weight: 600;
+    }
+    .status {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .completed {
+      background-color: #28a745;
+      color: white;
+    }
+    .cancelled {
+      background-color: #dc3545;
+      color: white;
+    }
+    .section-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #8b3f36;
+    }
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #8b3f36;
+    }
+    .page-subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="text-xl font-bold">🍽️ FoodShare</div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="donations.html">My Donations</a>
+      <a href="history.html" style="text-decoration: underline; font-weight: bold;">History</a>
+    </nav>
+    <div id="userDisplay"></div>
+  </header>
+
+  <div class="container">
+    <aside>
+      <div class="profile-card">
+        <img src="profile.png" alt="Profile" id="sidebarProfileImg">
+        <h3 id="sidebarUsername"></h3>
+        <p id="sidebarLocation">📍 Location</p>
+        <span id="userTypeBadge" class="verified">Verified Donor</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="donations.html"><i class="fas fa-box-heart"></i> My Donations</a>
+        <a href="history.html" class="active"><i class="fas fa-history"></i> History</a>
+        <a href="notifications.html"><i class="fas fa-bell"></i> Notifications <span class="notification-badge">3</span></a>
+        <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <main>
+      <h1 class="page-title">Donation History</h1>
+      <p class="page-subtitle">Track your completed and cancelled donation records.</p>
+
+      <div class="section-card">
+        <h2 class="section-title">Completed Donations</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Donation</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Picked Up By</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bagels & Muffins</td>
+              <td>Bakery</td>
+              <td>April 10, 2025</td>
+              <td>Helping Hands Org</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+            <tr>
+              <td>Fresh Bread Loaves</td>
+              <td>Bakery</td>
+              <td>April 5, 2025</td>
+              <td>City Food Bank</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-card">
+        <h2 class="section-title">Cancelled Donations</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Donation</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Leftover Sandwiches</td>
+              <td>Deli</td>
+              <td>March 28, 2025</td>
+              <td>No Pickup</td>
+              <td><span class="status cancelled">Cancelled</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check login status
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const userDisplay = document.getElementById('userDisplay');
+      
+      if (!isLoggedIn) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const username = localStorage.getItem('username') || 'User';
+      const email = localStorage.getItem('userEmail') || '';
+      const userType = localStorage.getItem('userType') || 'donor';
+      
+      // Update header user display
+      userDisplay.innerHTML = `
+        <div class="dropdown">
+          <button><i class="fas fa-user-circle"></i> ${username} <i class="fas fa-caret-down"></i></button>
+          <div class="dropdown-content">
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      `;
+      
+      // Update sidebar user info
+      document.getElementById('sidebarUsername').textContent = username;
+      document.getElementById('sidebarLocation').textContent = `✉ ${email}`;
+      
+      // Update user type badge
+      const badge = document.getElementById('userTypeBadge');
+      if (userType === 'admin') {
+        badge.textContent = 'Admin';
+        badge.style.backgroundColor = '#c62828';
+      } else if (userType === 'ngo') {
+        badge.textContent = 'Verified NGO';
+        badge.style.backgroundColor = '#2e7d32';
+      } else {
+        badge.textContent = 'Verified Donor';
+        badge.style.backgroundColor = '#007bff';
+      }
+    });
+  </script>
+</body>
+</html>

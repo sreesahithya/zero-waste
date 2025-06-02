@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodShare | Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f0e8;
+      color: #333;
+    }
+
+    header {
+      background-color: #7b3f3f;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    /* Bigger Logo Styles */
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      font-size: 2.8rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* User dropdown styles */
+    #userDisplay {
+      display: flex;
+      align-items: center;
+    }
+
+    #userDisplay .dropdown button {
+      background-color: transparent;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      font-size: 1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #userDisplay .dropdown button:hover {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 20px;
+    }
+
+    #userDisplay .dropdown-content {
+      right: 0;
+      left: auto;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f4f0e8;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .hero {
+      background-color: #a8573c;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 12px 25px;
+      margin: 0 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .btn-donate {
+      background-color: #fff;
+      color: #333;
+    }
+
+    .btn-find {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .section-title {
+      text-align: left;
+      padding: 40px 30px 10px;
+      font-size: 1.6em;
+      font-weight: bold;
+      border-bottom: 3px solid #9d4136;
+      display: inline-block;
+    }
+
+    .how-it-works, .recent-donations {
+      padding: 30px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1;
+      min-width: 280px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #a8573c;
+      font-weight: bold;
+    }
+
+    .impact {
+      background-color: #7b3f3f;
+      color: white;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .impact .card {
+      background: #a8573c;
+    }
+
+    .impact h3 {
+      font-size: 2em;
+      margin: 10px 0 5px;
+    }
+
+    .join-community {
+      text-align: center;
+      padding: 40px 20px;
+      background: #f4f0e8;
+    }
+
+    .join-community button {
+      padding: 10px 25px;
+      background-color: #7b3f3f;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    footer div {
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🌱</span>
+      <span>FoodShare</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="dashboard1.html">Dashboard</a>
+      <a href="post_donation.html">Donate</a>
+      <a href="map.html">Map</a>
+    </nav>
+
+    <!-- User Display Area -->
+    <div id="userDisplay">
+      <div class="dropdown" id="loginDropdown">
+        <button>Login/Register</button>
+        <div class="dropdown-content">
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Share Food, Not Waste</h1>
+    <p>Connect with local organizations to donate excess food and fight hunger in your community.</p>
+    <button class="btn-donate" onclick="window.location.href='post_donation.html'">🍎 Donate Food</button>
+    <button class="btn-find" onclick="window.location.href='map.html'">📍 Find Food</button>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section-title">How It Works</div>
+  <div class="how-it-works">
+    <div class="card">
+      <h3>📱 <a href="post_donation.html">Post Your Donation</a></h3>
+      <p>Take a photo, add details about your food donation, and specify pickup location and time.</p>
+    </div>
+    <div class="card">
+      <h3><a href="recipients.html">🔍 Connect with Recipients</a></h3>
+      <p>Verified NGOs, shelters, and volunteers can see and request your donation in real-time.</p>
+    </div>
+    <div class="card">
+      <h3><a href="dashboard1.html">✅ Complete the Donation</a></h3>
+      <p>Coordinate pickup, transfer the food, and mark it complete once delivered.</p>
+    </div>
+  </div>
+
+  <!-- Recent Donations -->
+  <div class="section-title">Recent Donations</div>
+  <div class="recent-donations">
+    <div class="card">
+      <h3>🍱 Restaurant Donation</h3>
+      <p><strong>Items:</strong> 20 Meal Boxes (Veg + Rice)</p>
+      <p><strong>Donor:</strong> Green Leaf Restaurant</p>
+      <p><strong>Date:</strong> <span id="currentDate1"></span></p>
+      <a href="dashboard1.html">Track Donation</a>
+    </div>
+
+    <div class="card">
+      <h3>🏠 Home Donation</h3>
+      <p><strong>Items:</strong> 10 Sandwiches, Fruits</p>
+      <p><strong>Donor:</strong> Priya Sharma</p>
+      <p><strong>Date:</strong> <span id="currentDate2"></span></p>
+      <a href="dashboard1.html">Track Donation</a>
+    </div>
+
+    <div class="card">
+      <h3>🎉 Event Donation</h3>
+      <p><strong>Items:</strong> 50 Plates (Rice + Curry)</p>
+      <p><strong>Donor:</strong> Wedding Hall - Royal Events</p>
+      <p><strong>Date:</strong> <span id="currentDate3"></span></p>
+      <a href="dashboard1.html">Track Donation</a>
+    </div>
+  </div>
+
+  <!-- Our Impact -->
+  <div class="impact">
+    <div class="card">
+      <h3>25,678</h3>
+      <p>KG of Food Saved</p>
+    </div>
+    <div class="card">
+      <h3>12,430</h3>
+      <p>People Fed</p>
+    </div>
+    <div class="card">
+      <h3>18,925</h3>
+      <p>KG CO₂ Prevented</p>
+    </div>
+  </div>
+
+  <!-- Join Us Section -->
+  <div class="join-community">
+    <h2>Join Our Community Today</h2>
+    <p>Be part of the solution to food waste and help feed those in need in your local community.</p>
+    <button onclick="window.location.href='login.html'">Get Started</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <h3>🌱 FoodShare</h3>
+      <p>Connecting food donors with those in need to reduce waste and fight hunger.</p>
+      <div>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="dashboard1.html">Dashboard</a>
+      <a href="post_donation.html">Donate</a>
+      <a href="map.html">Map</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="#">Blog</a>
+      <a href="#">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <p>✉ info@foodshare.org</p>
+      <p>📞 +123 456 7890</p>
+      <p>📍 123 Main St, City</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize current date
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    
+    document.getElementById('currentDate1').textContent = formattedDate;
+    document.getElementById('currentDate2').textContent = formattedDate;
+    document.getElementById('currentDate3').textContent = formattedDate;
+
+    // Check login status and update UI
+    document.addEventListener('DOMContentLoaded', function() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const userDisplay = document.getElementById('userDisplay');
+      
+      if (isLoggedIn) {
+        const username = localStorage.getItem('username') || 'User';
+        const email = localStorage.getItem('userEmail') || '';
+        
+        userDisplay.innerHTML = `
+          <div class="dropdown">
+            <button>👤 ${username}</button>
+            <div class="dropdown-content">
+              <a href="profile.html">Profile</a>
+              <a href="dashboard1.html">Dashboard</a>
+              <a href="logout.html">Logout</a>
+            </div>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

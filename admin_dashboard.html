@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | ZeroWaste</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f0e8;
+      color: #333;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: white;
+      color: #7b3f3f;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+      font-weight: bold;
+    }
+
+    .sidebar h2 {
+      font-size: 1.4em;
+      margin-bottom: 30px;
+      color: #7b3f3f;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #7b3f3f;
+      text-decoration: none;
+      margin: 15px 0;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #f4e2d8;
+      color: #a8573c;
+    }
+
+    .main-content {
+      margin-left: 260px;
+      padding: 30px;
+      background-color: #f4f0e8;
+      min-height: 100vh;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    h1, h2 {
+      color: #7b3f3f;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #7b3f3f;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f4ef;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      background-color: #7b3f3f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    .btn:hover {
+      background-color: #a8573c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>ZeroWaste Admin</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">User Moderation</a>
+    <a href="#">Food Post Moderation</a>
+    <a href="#">Reports</a>
+    <a href="#">Flagged Users</a>
+    <a href="#">Add NGOs & Volunteers</a>
+    <a href="#">Settings</a>
+  </div>
+
+  <div class="main-content">
+    <h1>Admin Dashboard</h1>
+
+    <div class="card">
+      <h2>Daily Reports</h2>
+      <p>Food Saved: 120 kg</p>
+      <p>People Served: 350</p>
+      <p>Emission Prevented (CO₂): 250 kg</p>
+    </div>
+
+    <div class="card">
+      <h2>Users List</h2>
+      <table>
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>John Doe</td>
+          <td>john.doe@example.com</td>
+          <td>Verified</td>
+          <td><button class="btn">Flag as Fraud</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jane Smith</td>
+          <td>jane.smith@example.com</td>
+          <td>Unverified</td>
+          <td><button class="btn">Verify</button></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Food Posts</h2>
+      <table>
+        <tr>
+          <th>Post ID</th>
+          <th>Donor</th>
+          <th>Food Type</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Restaurant ABC</td>
+          <td>Vegetarian</td>
+          <td>Pending</td>
+          <td><button class="btn">Approve</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Catering XYZ</td>
+          <td>Non-Veg</td>
+          <td>Accepted</td>
+          <td><button class="btn">Mark as Picked</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

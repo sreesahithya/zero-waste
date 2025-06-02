@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodShare | Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f0e8;
+      color: #333;
+    }
+
+    header {
+      background-color: #7b3f3f;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      font-size: 2.8rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    #userDisplay {
+      display: flex;
+      align-items: center;
+    }
+
+    #userDisplay .dropdown button {
+      background-color: transparent;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      font-size: 1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #userDisplay .dropdown button:hover {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 20px;
+    }
+
+    #userDisplay .dropdown-content {
+      right: 0;
+      left: auto;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f4f0e8;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .hero {
+      background-color: #a8573c;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 12px 25px;
+      margin: 0 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .btn-donate {
+      background-color: #fff;
+      color: #333;
+    }
+
+    .btn-find {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .section-title {
+      text-align: left;
+      padding: 40px 30px 10px;
+      font-size: 1.6em;
+      font-weight: bold;
+      border-bottom: 3px solid #9d4136;
+      display: inline-block;
+    }
+
+    .how-it-works, .recent-donations {
+      padding: 30px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1;
+      min-width: 280px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #a8573c;
+      font-weight: bold;
+    }
+
+    .impact {
+      background-color: #7b3f3f;
+      color: white;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .impact .card {
+      background: #a8573c;
+    }
+
+    .impact h3 {
+      font-size: 2em;
+      margin: 10px 0 5px;
+    }
+
+    .join-community {
+      text-align: center;
+      padding: 40px 20px;
+      background: #f4f0e8;
+    }
+
+    .join-community button {
+      padding: 10px 25px;
+      background-color: #7b3f3f;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    footer div {
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .tracking-status {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .status-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .status-bubble {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .status-bubble.active {
+      background-color: #a8573c;
+      color: white;
+    }
+
+    .status-label {
+      font-size: 0.8em;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .status-label.active {
+      font-weight: bold;
+      color: #a8573c;
+    }
+
+    .status-line {
+      position: absolute;
+      top: 15px;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+
+    .status-line.active {
+      background-color: #a8573c;
+    }
+
+    .status-pending {
+      color: #ff9800;
+      font-weight: bold;
+    }
+
+    .status-scheduled {
+      color: #2196f3;
+      font-weight: bold;
+    }
+
+    .status-accepted {
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    .status-verified {
+      color: #9c27b0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🌱</span>
+      <span>FoodShare</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="post_donation.html">Donate</a>
+      <a href="map.html">Map</a>
+    </nav>
+
+    <!-- User Display Area -->
+    <div id="userDisplay">
+      <div class="dropdown" id="loginDropdown">
+        <button>Login/Register</button>
+        <div class="dropdown-content">
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Share Food, Not Waste</h1>
+    <p>Connect with local organizations to donate excess food and fight hunger in your community.</p>
+    <button class="btn-donate" onclick="window.location.href='post_donation.html'">🍎 Donate Food</button>
+    <button class="btn-find" onclick="window.location.href='map.html'">📍 Find Food</button>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section-title">How It Works</div>
+  <div class="how-it-works">
+    <div class="card">
+      <h3>📱 <a href="post_donation.html">Post Your Donation</a></h3>
+      <p>Take a photo, add details about your food donation, and specify pickup location and time.</p>
+    </div>
+    <div class="card">
+      <h3><a href="recipients.html">🔍 Connect with Recipients</a></h3>
+      <p>Verified NGOs, shelters, and volunteers can see and request your donation in real-time.</p>
+    </div>
+    <div class="card">
+      <h3><a href="dashboard.html">📊 Track Your Donation</a></h3>
+      <div class="tracking-status" id="trackingStatus">
+        <div class="status-line" id="statusLine1"></div>
+        <div class="status-line" id="statusLine2"></div>
+        <div class="status-line" id="statusLine3"></div>
+        <div class="status-step" onclick="updateStatus(1)">
+          <div class="status-bubble active" id="bubble1">1</div>
+          <div class="status-label active" id="label1">Pending</div>
+        </div>
+        <div class="status-step" onclick="updateStatus(2)">
+          <div class="status-bubble" id="bubble2">2</div>
+          <div class="status-label" id="label2">Scheduled</div>
+        </div>
+        <div class="status-step" onclick="updateStatus(3)">
+          <div class="status-bubble" id="bubble3">3</div>
+          <div class="status-label" id="label3">Accepted</div>
+        </div>
+        <div class="status-step" onclick="updateStatus(4)">
+          <div class="status-bubble" id="bubble4">4</div>
+          <div class="status-label" id="label4">Verified</div>
+        </div>
+      </div>
+      <p>Monitor your donation's progress through each stage until completion.</p>
+      <button onclick="resetTracking()" style="margin-top: 15px; padding: 8px 15px; background: #7b3f3f; color: white; border: none; border-radius: 5px; cursor: pointer;">Reset Tracking</button>
+    </div>
+  </div>
+
+  <!-- Recent Donations -->
+  <div class="section-title">Recent Donations</div>
+  <div class="recent-donations">
+    <div class="card">
+      <h3>🍱 Restaurant Donation</h3>
+      <p><strong>Items:</strong> 20 Meal Boxes (Veg + Rice)</p>
+      <p><strong>Donor:</strong> Green Leaf Restaurant</p>
+      <p><strong>Status:</strong> <span class="status-pending">Pending</span></p>
+      <p><strong>Date:</strong> <span id="currentDate1"></span></p>
+      <a href="dashboard.html">Track Donation</a>
+    </div>
+
+    <div class="card">
+      <h3>🏠 Home Donation</h3>
+      <p><strong>Items:</strong> 10 Sandwiches, Fruits</p>
+      <p><strong>Donor:</strong> Priya Sharma</p>
+      <p><strong>Status:</strong> <span class="status-scheduled">Scheduled</span></p>
+      <p><strong>Date:</strong> <span id="currentDate2"></span></p>
+      <a href="dashboard.html">Track Donation</a>
+    </div>
+
+    <div class="card">
+      <h3>🎉 Event Donation</h3>
+      <p><strong>Items:</strong> 50 Plates (Rice + Curry)</p>
+      <p><strong>Donor:</strong> Wedding Hall - Royal Events</p>
+      <p><strong>Status:</strong> <span class="status-verified">Verified</span></p>
+      <p><strong>Date:</strong> <span id="currentDate3"></span></p>
+      <a href="dashboard.html">Track Donation</a>
+    </div>
+  </div>
+
+  <!-- Our Impact -->
+  <div class="impact">
+    <div class="card">
+      <h3>25,678</h3>
+      <p>KG of Food Saved</p>
+    </div>
+    <div class="card">
+      <h3>12,430</h3>
+      <p>People Fed</p>
+    </div>
+    <div class="card">
+      <h3>18,925</h3>
+      <p>KG CO₂ Prevented</p>
+    </div>
+  </div>
+
+  <!-- Join Us Section -->
+  <div class="join-community">
+    <h2>Join Our Community Today</h2>
+    <p>Be part of the solution to food waste and help feed those in need in your local community.</p>
+    <button onclick="window.location.href='login.html'">Get Started</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <h3>🌱 FoodShare</h3>
+      <p>Connecting food donors with those in need to reduce waste and fight hunger.</p>
+      <div>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="post_donation.html">Donate</a>
+      <a href="map.html">Map</a>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <a href="#">Blog</a>
+      <a href="#">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <p>✉ info@foodshare.org</p>
+      <p>📞 +123 456 7890</p>
+      <p>📍 123 Main St, City</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize current date
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    
+    document.getElementById('currentDate1').textContent = formattedDate;
+    document.getElementById('currentDate2').textContent = formattedDate;
+    document.getElementById('currentDate3').textContent = formattedDate;
+
+    // Check login status and update UI
+    document.addEventListener('DOMContentLoaded', function() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const userDisplay = document.getElementById('userDisplay');
+      
+      if (isLoggedIn) {
+        const username = localStorage.getItem('username') || 'User';
+        const email = localStorage.getItem('userEmail') || '';
+        
+        userDisplay.innerHTML = `
+          <div class="dropdown">
+            <button>👤 ${username}</button>
+            <div class="dropdown-content">
+              <a href="profile.html">Profile</a>
+              <a href="dashboard.html">Dashboard</a>
+              <a href="logout.html">Logout</a>
+            </div>
+          </div>
+        `;
+      }
+    });
+
+    // Tracking status functionality
+    let currentStatus = 1;
+
+    function updateStatus(status) {
+      // Only allow moving forward one step at a time
+      if (status > currentStatus + 1) {
+        return;
+      }
+
+      // Update current status
+      currentStatus = status;
+
+      // Reset all status indicators
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('bubble' + i).classList.remove('active');
+        document.getElementById('label' + i).classList.remove('active');
+        if (i > 1) {
+          document.getElementById('statusLine' + (i-1)).classList.remove('active');
+        }
+      }
+
+      // Activate up to the selected status
+      for (let i = 1; i <= status; i++) {
+        document.getElementById('bubble' + i).classList.add('active');
+        document.getElementById('label' + i).classList.add('active');
+        if (i > 1) {
+          document.getElementById('statusLine' + (i-1)).classList.add('active');
+        }
+      }
+
+      // If we reached the end, show completion message
+      if (status === 4) {
+        setTimeout(() => {
+          alert('Donation successfully verified! The cycle will now reset for new donations.');
+          resetTracking();
+        }, 500);
+      }
+    }
+
+    function resetTracking() {
+      currentStatus = 1;
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('bubble' + i).classList.remove('active');
+        document.getElementById('label' + i).classList.remove('active');
+        if (i > 1) {
+          document.getElementById('statusLine' + (i-1)).classList.remove('active');
+        }
+      }
+      document.getElementById('bubble1').classList.add('active');
+      document.getElementById('label1').classList.add('active');
+    }
+  </script>
+</body>
+</html>

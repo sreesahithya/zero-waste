@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodShare | Logout</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f0e8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    
+    .logout-container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #7b3f3f;
+    }
+    
+    button {
+      background-color: #7b3f3f;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logout-container">
+    <div class="logo">🌱 FoodShare</div>
+    <h2>You have been logged out</h2>
+    <p>Thank you for using FoodShare. You can return to the homepage below.</p>
+    <button onclick="goToHome()">Go to Home</button>
+  </div>
+
+  <script>
+    // Clear login status
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('userEmail');
+    
+    function goToHome() {
+      window.location.href = 'index.html';
+    }
+    
+    // Optional: Redirect after 5 seconds
+    setTimeout(goToHome, 5000);
+  </script>
+</body>
+</html>
